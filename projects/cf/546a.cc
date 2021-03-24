@@ -23,17 +23,15 @@ vector<int> getline_ints(int input_len) {
 
 int main()
 {
-    int n, k; 
-    cin >> n >> k; 
+    int k, n, w; 
+    cin >> k >> n >> w; 
+    int sum = 0; 
 
-    vector<int> nums; 
-    nums = getline_ints(n); 
+    // total cost of banas he wants
+    for (int i = 1; i < w+1; ++i){
+        sum += i*k; 
+    }
 
-    int advance_val, num_winners = 0; 
-
-    advance_val = nums[k-1]; 
-
-    for(int i = 0; i < n; ++i) if (nums[i] >= advance_val && nums[i]) ++num_winners;  
-
-    p(num_winners); return 0; 
+    (sum - n >= 0) ? p(sum - n) : p(0); 
+    return 0; 
 }

@@ -8,9 +8,9 @@ using namespace std;
 
 #define p(j) cout << j << endl
 #define ull unsigned long long
-#define sort_vec(a) sort(a.begin(), a.end())
 #define loop(i, b, n) for (int i = b; i < n; ++i)
 #define pb push_back
+#define desc greater<int>()
 
 template <typename T>
 vector<T> gl(int input_len); 
@@ -19,7 +19,23 @@ void pv(vector<T> vec);
 
 
 int main(){
-    
+    int n; 
+    cin >> n; 
+    vector<int> s = gl<int>(n); // s[i] = # kids in group i
+    int ntaxis = 0; 
+    sort(s.begin(), s.end()); // last is the fatties
+
+    int l = s.size()-1; 
+    int f = 0; 
+    while (f != l){
+        if (s[f] + s[l] <= 4){
+            ++f;
+            --l;
+        } else --l; 
+        ntaxis++; 
+    }
+
+    p(ntaxis); return 0; 
 }
 
 

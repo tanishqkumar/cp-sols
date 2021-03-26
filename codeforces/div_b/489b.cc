@@ -13,33 +13,22 @@ using namespace std;
 #define desc greater<int>()
 
 template <typename T>
-vector<T> gl(int input_len); 
+vector<T> gl(int input_len);
 template <typename T>
 void pv(vector<T> vec);
 
-
-int main(){
+int main()
+{
+    // take input
     int n; 
     cin >> n; 
-    vector<int> s = gl<int>(n); // s[i] = # kids in group i
-    int ntaxis = 0; 
-    sort(s.begin(), s.end()); // last is the fatties
+    vector<int> boys = gl<int>(n); 
+    int m; 
+    cin >> m; 
+    vector<int> girls = gl<int>(m); 
 
-    int l = s.size()-1; 
-    int f = 0; 
-    while (f != l){
-        if (s[f] + s[l] <= 4){
-            ++f;
-            --l;
-        } else --l; 
-        ntaxis++; 
-    }
-
-    p(ntaxis); return 0; 
+    
 }
-
-
-
 
 
 
@@ -79,7 +68,8 @@ template <typename T>
 vector<T> gl(int n)
 {
     vector<T> nums;
-    for (int i = 0; i < n; i++){
+    for (int i = 0; i < n; i++)
+    {
         T el;
         cin >> el;
         nums.pb(el);
@@ -88,7 +78,8 @@ vector<T> gl(int n)
 }
 
 template <typename T>
-void pv(vector<T> vec){
+void pv(vector<T> vec)
+{
     for (int i = 0; i < vec.size(); ++i)
         cout << vec[i] << " ";
     cout << endl;

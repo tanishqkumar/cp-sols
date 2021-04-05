@@ -11,33 +11,26 @@ using namespace std;
 #define loop(i, b, n) for (int i = b; i < n; ++i)
 #define pb push_back
 #define desc greater<int>()
+#define vi vector<int>
 
 template <typename T>
 vector<T> gl(int input_len);
 template <typename T>
 void pv(vector<T> vec);
 
-int main()
-{
-    // take input
-    int n; 
+int main(){
+    ull n; 
     cin >> n; 
-    vector<int> boys = gl<int>(n); 
-    int m; 
-    cin >> m; 
-    vector<int> girls = gl<int>(m); 
+    vector<ull> ints = gl<ull>(n); 
+    ull moves = 0; 
 
-    // implement max matching in bipartite graph after you learn network flow 
-
+    for(ull i = 0; i < n; ++i){
+        while (ints[i] < ints[i-1]){
+            ++ints[i]; ++moves;  
+        }
+    }
+    p(moves); return 0; 
 }
-
-
-
-
-
-
-
-
 
 
 

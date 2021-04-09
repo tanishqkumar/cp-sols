@@ -21,8 +21,11 @@ vector<T> gl(int input_len);
 template <typename T>
 void pv(vector<T> vec);
 
+const int sz = 1e6;
+int dp[sz + 1]; // stores the # steps you need to get i to zero
+
 int main(){
-    // 0-1 knapsack dp
+    // dp on 
 }
 
 // helpers

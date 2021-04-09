@@ -21,31 +21,19 @@ vector<T> gl(int input_len);
 template <typename T>
 void pv(vector<T> vec);
 
+const int mxN=1e6; 
+int dp[mxN + 1]; // stores the # steps you need to get i to zero
+
 int main(){
     int n; 
     cin >> n; 
-    vi dp(10, 0); // stores the # steps you need to get i to zero
-    
-    loop(i, 1, 10) dp[i] = 1; // anything from 0-9 needs only 1 step
-    if (n < 10) {
-        p(dp[n]);
-        return 0; 
-    }
-
-    loop(i, 10, n+1){
-        vi digits; 
-        int tmp = i; 
-        do {
-            digits.pb(tmp%10); 
-            tmp /= 10; 
-        } while(tmp > 0);
-        pv<int>(digits); 
-        int min = 1e9; 
-        // dp[i] = min_digits_in_i(dp[i-d])+1
-        for(int digit : digits){
-            if (dp[i-digit] + 1< min) min = dp[i-digit]+1; 
+    loop(i, 1, n+1){
+        dp[i] = 1e9; 
+        int i2 = i; 
+        while(i2){
+            dp[i] = min(dp[i], dp[i - (i2 % 10)] + 1); // surely we need to check for i2%10 = 10 here
+            i2 /= 10; 
         }
-        dp[i] = min; 
     }
     p(dp[n]); return 0; 
 }

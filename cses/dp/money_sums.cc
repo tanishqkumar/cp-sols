@@ -1,8 +1,9 @@
 #include <iostream>
+#include <iomanip>
 #include <math.h>
 #include <algorithm>
 #include <vector>
-#include <iomanip>
+#include <string>
 
 using namespace std;
 
@@ -19,28 +20,46 @@ vector<T> gl(int input_len);
 template <typename T>
 void pv(vector<T> vec);
 
-const int sz = 1e5;
-int dp[sz + 1]; // stores the # steps you need to get i to zero
-// TODO
 int main(){
-    int n, x; 
-    cin >> n >> x; 
-    vi prices = gl<int>(n);
-    vi pages = gl<int>(n);
-
-    // dp[i] = max #pages you can buy with $i
-    loop(i, 0, x+1){
-        dp[i] = 0; 
-        loop(j, 0, n){
-            if (prices[j] <= i){
-                dp[i] = max(dp[i], dp[i-prices[j]] + pages[j]); 
-            }
-        }
-        p(dp[i]);   
-    }
-    // for all books j: dp[i] = max(dp[i], dp[i-prices[j]] + pages[j])
-    p(dp[x]); return 0; 
+	int n; 
+	cin >> n;
+	vi x = gl<int>(n); 
+	vector<bool> dp(1e5+1, 0); // dp[i] is whether we can make i from x[]
+	dp[0] = 1; // base case -- we can always make 0 using nothing
+	for(int xj : x) // for some fixed xj, which of [1:1e5] can we make using rest
+		// for(int i = 1; i < 1e5+1; ++i)
+		for(int i = 1e5+1; i; --i)
+			if (i >= xj) dp[i] = dp[i] | dp[i-xj]; 
+	vi ans; // all the nums from 1:1e5 that we can make
+	loop(a, 1, 1e5+1)
+		if (dp[a]) ans.pb(a); 
+	p(ans.size()); 
+	pv<int>(ans); 
+	return 1; 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // helpers
 template <typename T>

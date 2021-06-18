@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <vector>
 #include <iomanip>
+#include <string>
 
 using namespace std;
 
@@ -13,34 +14,52 @@ using namespace std;
 #define desc greater<int>()
 #define vi vector<int>
 #define MI numeric_limits<int>::max()
+#define minn(a, b, c) min(a, min(b, c))
 
 template <typename T>
 vector<T> gl(int input_len);
 template <typename T>
 void pv(vector<T> vec);
 
-const int sz = 1e5;
-int dp[sz + 1]; // stores the # steps you need to get i to zero
-// TODO
-int main(){
-    int n, x; 
-    cin >> n >> x; 
-    vi prices = gl<int>(n);
-    vi pages = gl<int>(n);
 
-    // dp[i] = max #pages you can buy with $i
-    loop(i, 0, x+1){
-        dp[i] = 0; 
-        loop(j, 0, n){
-            if (prices[j] <= i){
-                dp[i] = max(dp[i], dp[i-prices[j]] + pages[j]); 
-            }
+int main(){
+    string a, b; 
+    cin >> a >> b; 
+    a = " " + a; 
+    b = " " + b; 
+    int n = a.size(); 
+    int m = b.size(); 
+    vector<vi> dp(n+1, vi(m+1)); 
+    // let dp[i, j] be the edit distance from a[1:i] to b[1:j]
+    loop(i, 0, n+1) dp[i][0] = i; // base case
+    loop(j, 0, m+1) dp[0][j] = j; 
+    loop(i, 1, n+1){ // recurrence
+        loop(j, 1, m+1){
+            bool same = !(a[i] == b[j]); // 0 if same, 1 if not
+            dp[i][j] = minn(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + same);
         }
-        p(dp[i]);   
     }
-    // for all books j: dp[i] = max(dp[i], dp[i-prices[j]] + pages[j])
-    p(dp[x]); return 0; 
+    p(dp[n][m]); // final case
+    return 1; 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // helpers
 template <typename T>

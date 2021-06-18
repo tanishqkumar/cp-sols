@@ -19,28 +19,53 @@ vector<T> gl(int input_len);
 template <typename T>
 void pv(vector<T> vec);
 
-const int sz = 1e5;
-int dp[sz + 1]; // stores the # steps you need to get i to zero
-// TODO
-int main(){
-    int n, x; 
-    cin >> n >> x; 
-    vi prices = gl<int>(n);
-    vi pages = gl<int>(n);
 
-    // dp[i] = max #pages you can buy with $i
-    loop(i, 0, x+1){
-        dp[i] = 0; 
-        loop(j, 0, n){
-            if (prices[j] <= i){
-                dp[i] = max(dp[i], dp[i-prices[j]] + pages[j]); 
-            }
-        }
-        p(dp[i]);   
+int main(){
+    int n; 
+    cin >> n; 
+    vi a(10, 0); 
+    vi b(10, 0); 
+    loop(i, 0, n) cin >> a[i] >> b[i]; 
+    sort(a.begin(), a.end()); // eg. 2, 3, 5
+    sort(b.begin(), b.end()); // eg. 4, 8, 9
+
+    int ppl = 0; 
+    int max_ppl = 0; 
+    loop(t, 1, 10){
+        // one sweep through A and B
+        if (a[t] == t) ++ppl; 
+        if (b[t] == t) --ppl; 
+        p(ppl); 
+        max_ppl = max(max_ppl, ppl); 
     }
-    // for all books j: dp[i] = max(dp[i], dp[i-prices[j]] + pages[j])
-    p(dp[x]); return 0; 
+    p(max_ppl); return 0; 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // helpers
 template <typename T>

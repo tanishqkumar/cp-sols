@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <vector>
 #include <iomanip>
+#include <string>
 
 using namespace std;
 
@@ -19,28 +20,57 @@ vector<T> gl(int input_len);
 template <typename T>
 void pv(vector<T> vec);
 
-const int sz = 1e5;
-int dp[sz + 1]; // stores the # steps you need to get i to zero
-// TODO
-int main(){
-    int n, x; 
-    cin >> n >> x; 
-    vi prices = gl<int>(n);
-    vi pages = gl<int>(n);
+const int sz = 1e3; 
+int n, m;
+string in[sz];
 
-    // dp[i] = max #pages you can buy with $i
-    loop(i, 0, x+1){
-        dp[i] = 0; 
-        loop(j, 0, n){
-            if (prices[j] <= i){
-                dp[i] = max(dp[i], dp[i-prices[j]] + pages[j]); 
-            }
-        }
-        p(dp[i]);   
-    }
-    // for all books j: dp[i] = max(dp[i], dp[i-prices[j]] + pages[j])
-    p(dp[x]); return 0; 
+bool e(int i, int j){
+    return ((0 <= i < n) && (0 <= j < m) && (in[i][j]=='.'));
 }
+
+void dfs(int i, int j){ 
+    in[i][j] = '#';
+    if (e(i-1, j))
+        dfs(i-1, j); 
+    if (e(i+1, j))
+        dfs(i+1, j); 
+    if (e(i, j-1))
+        dfs(i, j-1); 
+    if (e(i, j+1))
+        dfs(i, j+1); 
+}
+
+int main(){
+    cin >> n >> m; 
+    loop(i, 0, n) cin >> in[i]; // add lines
+
+    int ans = 0; 
+    loop(i, 0, n)
+        loop(j, 0, m)
+            if (e(i, j)) dfs(i, j), ++ans; 
+    p(ans); return 0; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // helpers
 template <typename T>

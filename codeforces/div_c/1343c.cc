@@ -10,47 +10,42 @@ using namespace std;
 
 #define p(j) cout << j << endl
 #define vi vector<int>
-#define ull unsigned long long
+#define ll long long
 #define loop(i, b, n) for (int i = b; i < n; ++i)
 #define pb push_back
 #define desc greater<int>()
+#define new_max(x, y) (((x) >= (y)) ? (x) : (y))
 
 template <typename T>
 vector<T> gl(int input_len);
 template <typename T>
 void pv(vector<T> vec);
 
+int sign(int i){
+    return (i > 0 ? 1 : -1);
+}
+
 int main(){
     int t;
     cin >> t;
     while (t--){
-        int n, k; cin >> n >> k; 
-        int r = 1, ans = 1; 
-        int q = (int) (k-1)/(n-1);
-        ans += (n-1)*q; 
-        p(n * q + abs(k - ans) + 1);
+        int n; cin >> n; // <2e5
+        vi a = gl<int>(n); // |a| < 1e9
+        ll ttl = 0;
+        for(int p1 = 0; p1 < a.size();){
+            int p2 = p1; 
+            ll lm = a[p1]; 
+            while (sign(a[p1]) == sign(a[p2]) && p2 < a.size()){
+                lm = new_max(lm, a[p2]); 
+                p2++; 
+            }
+            p1 = p2; 
+            ttl += lm; 
+        }
+        p(ttl); 
     }
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // helpers
 template <typename T>

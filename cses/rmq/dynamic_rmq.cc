@@ -50,12 +50,6 @@ void update(int v, int tl, int tr, int pos, int new_val){
     }
 }
 
-// go through all french words
-// finish seg tree stuff, do a few practise problems
-    // use seg trees to implement a suffix tree, compare timing to naive
-    // build tutIsland and read network code
-
-
 int query(int v, int tl, int tr, int l, int r){
     if (l > r) return INT32_MAX;
     if (tl == l && tr == r) return t[v];

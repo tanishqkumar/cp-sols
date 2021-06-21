@@ -21,25 +21,6 @@ vector<T> gl(int input_len);
 template <typename T>
 void pv(vector<T> vec);
 
-// take in [1, 9] x [1, 9] desired sq and pos within it
-// int[] get_coords(int square_no, int within_sq){
-//     int[] coords = {-1, -1};
-//     int[] in = {square_no, within_sq};
-//     switch in:
-//         case {1, 1}: return {0, 0};
-//         case {2, 4}: return {0, 0};
-
-
-
-//     assert(coords[0] != -1 && coords[1] != -1);
-//     return coords; // [0, 8] x [0, 8] coords
-// }
-
-// square nos go from [1, 9]
-    // (1, 1) -> (2, 4) -> (3, 7)
-        // (4, 2) -> (5, 5) -> (6, 8)
-            // (7, 3) -> (8, 6) -> (9, 9)
-
 int main(){
     vector<pair<int, int>> combs;
     combs.pb(make_pair(1, 1));

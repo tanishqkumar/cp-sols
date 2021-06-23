@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include <string.h>
 #include <algorithm>
 #include <vector>
 #include <iomanip>
@@ -20,11 +21,32 @@ vector<T> gl(int input_len);
 template <typename T>
 void pv(vector<T> vec);
 
-const int maxN = 2e5;
+const int maxN = 100;
+int dp[maxN+1][8];
 
 int main(){
-    
-    return 0; 
+    string s; cin >> s; 
+    loop(i, 0, s.size()){
+        if (stoi(string() + s[i]) % 8 == 0){
+            p("YES");
+            p(stoi(string() + s[i])); return 0; 
+        }
+        loop(j, i, s.size()){
+            if (i == j) continue;
+            if (stoi(string() + s[i] + s[j]) % 8 == 0){
+                p("YES");
+                p(stoi(string() + s[i] + s[j]));
+                return 0;
+            }
+            loop(k, j, s.size()){
+                if (j == k || i == k) continue; 
+                // append these 3 diff digits into a num
+                int num = stoi(string() + s[i] + s[j] + s[k]); 
+                if (num % 8 == 0) { p("YES"); p(num); return 0; }
+            }
+        }
+    }
+    p("NO"); return 0; 
 }
 
 // helpers

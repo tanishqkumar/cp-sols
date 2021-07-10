@@ -21,9 +21,20 @@ template <typename T>
 void pv(vector<T> vec);
 
 int main(){ 
-    // TODO    
-    
-    return 0;
+    int t; cin >> t; 
+    while(t--){
+        int n, k; cin >> n >> k; 
+        string a, b; cin >> a >> b; 
+        vi have(27, 0); vi need(27, 0); 
+        loop(i, 0, n) have[a[i]-'a']++; 
+        loop(i, 0, n) need[b[i]-'a']++; 
+        bool bad = false; 
+        loop(i, 0, 26){
+            if (have[i] < need[i] || (have[i] -= need[i]) % k)
+                bad = true; 
+            have[i+1]+=have[i];
+        } cout << (bad ? "No" : "Yes") << endl;
+    } return 0;
 }
 
 // helpers

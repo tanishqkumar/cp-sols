@@ -20,25 +20,19 @@ vector<T> gl(int input_len);
 template <typename T>
 void pv(vector<T> vec);
 
-
-int main(){
+int main()
+{
     int t; cin >> t; 
-    while (t--){
-        ll a, b; cin >> a >> b;
-        ll gcd = abs(b-a);
-        if (gcd == 0) p("0 0"); 
-        else {
-            ll small = min(b, a);
-            ll bel = floor(small/gcd) * gcd;
-            p("bel: " << bel);
-            ll ab = (floor(small/gcd)+1) * gcd;
-            ll r = 1e18L; 
-            if (ab == 0 || bel == 0) r = small; 
-            p("ab: " << ab);
-            p(gcd << " " << min(min(r, small % bel), small % ab));
-        }
-    }
-    return 0; 
+    while(t--){
+        int xa, ya; cin >> xa >> ya; 
+        int xb, yb; cin >> xb >> yb; 
+        int xf, yf; cin >> xf >> yf; 
+        bool xline = (xa == xb && xb == xf && min(ya, yb) <= yf && max(ya, yb) >= yf);
+        bool yline = (ya == yb && yb == yf && min(xa, xb) <= xf && max(xa, xb) >= xf);
+        int ans = abs(xa - xb) + abs(ya-yb); 
+        if (xline || yline) ans+=2; 
+        p(ans);
+    }return 0;
 }
 
 // helpers

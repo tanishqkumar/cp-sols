@@ -21,8 +21,13 @@ template <typename T>
 void pv(vector<T> vec);
 
 int main(){
-    int n; cin >> n; 
-    
+    int t; cin >> t; 
+    while(t--){
+        int n; cin >> n; 
+        vi x = gl<int>(n); 
+        vi y = gl<int>(n); 
+        
+    }
     return 0;
 }
 

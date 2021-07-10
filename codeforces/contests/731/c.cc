@@ -20,8 +20,36 @@ vector<T> gl(int input_len);
 template <typename T>
 void pv(vector<T> vec);
 
-int main()
-{
+int main(){
+    int t; cin >> t; 
+    while(t--){
+        int k, n, m; cin >> k >> n >> m; 
+        vi a = gl<int>(n);
+        vi b = gl<int>(m);
+        vi out; int nz = 0; 
+        int maxl = 0;
+        for (auto& ai : a){
+            maxl = max(ai, maxl); 
+            if (ai == 0){
+                ++nz; out.pb(ai); 
+            }
+        }
+        for (auto& bi : b){
+            maxl = max(bi, maxl); 
+            if (bi == 0){
+                ++nz; out.pb(bi); 
+            }
+        }
+        if (maxl > nz + k) p(-1); 
+        else{
+            for (auto& ai : a){
+                if (ai != 0) out.pb(ai); 
+            }
+            for (auto& bi : b){
+                if (bi != 0) out.pb(bi); 
+            } pv<int>(out); 
+        }
+    }return 0; 
 }
 
 // helpers

@@ -10,7 +10,7 @@ using namespace std;
 
 #define p(j) cout << j << endl
 #define vi vector<int>
-#define ull unsigned long long
+#define ll long long
 #define loop(i, b, n) for (int i = b; i < n; ++i)
 #define pb push_back
 #define desc greater<int>()
@@ -21,8 +21,7 @@ template <typename T>
 void pv(vector<T> vec);
 
 int main(){
-    int u, v; cin >> u >> v; 
-
+    int n; cin >> n; 
     
     return 0;
 }

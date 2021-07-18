@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <queue>
 #include <unordered_map>
+#include <string.h>
 
 using namespace std;
 

@@ -5,7 +5,6 @@
 #include <iomanip>
 #include <queue>
 #include <unordered_map>
-#include <string.h>
 
 using namespace std;
 
@@ -19,42 +18,20 @@ using namespace std;
 #define desc greater<int>()
 #define pii pair<int, int>
 #define all(x) x.begin(), x.end()
-#define INF 1e9+7
+#define INF 1e9 + 7
 
 template <typename T>
 vector<T> gl(int input_len);
 template <typename T>
 void pv(vector<T> vec);
 
+queue<int> q; //
 
-queue<int> q; 
-const int maxN = 401; 
-int rail_edge[maxN][maxN]; 
-int dist[maxN]; 
-int n; 
-
-int bfs(int rail){
-    dist[1] = 0; 
-    q.push(1); 
-
-    while(!q.empty()){
-        // grab an el, put its kids on the q and set their dist
-        int u = q.front(); q.pop(); 
-        loop(v,1,n+1){
-            if (rail_edge[u][v] == rail && dist[v] == -1)
-                {dist[v]=dist[u]+1; q.push(v);}
-        }
-    } return dist[n];
-}
-
-int main(void){
-    int m; cin >> n >> m; 
-    memset(dist, -1, sizeof(dist)); 
-    while(m--){
-        int a, b; cin >> a >> b; 
-        rail_edge[a][b] = rail_edge[b][a] = 1; 
+int main(){
+    int t; cin >> t; 
+    while(t--){
+        // TODO
     }
-    p(bfs(1-rail_edge[1][n]));
     return 0;
 }
 
